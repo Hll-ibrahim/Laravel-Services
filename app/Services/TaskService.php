@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\Task;
+use Illuminate\Support\Facades\RateLimiter;
 
 class TaskService
 {
@@ -17,7 +18,18 @@ class TaskService
 
     public function createTask($data)
     {
-        return Task::create($data);
+        $executed = RateLimiter::attempt(
+            'send-message:'.$data['name'],
+            5,
+            function() use($data) {
+                Task::create($data);
+            },
+            10
+        );
+        if (! $executed) {
+            return 'Too many messages sent!';
+        }
+        return $data;
     }
 
     public function updateTask($id, $data)
