@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\TaskService;
+use App\Http\Requests\TaskRequest;
 
 class TaskController extends Controller
 {
@@ -26,16 +27,16 @@ class TaskController extends Controller
         return response()->json($task);
     }
 
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $task = $this->taskService->createTask($data);
         return response()->json($task, 201);
     }
 
-    public function update(Request $request, $id)
+    public function update(TaskRequest $request, $id)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $task = $this->taskService->updateTask($id, $data);
         return response()->json($task);
     }
