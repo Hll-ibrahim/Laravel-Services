@@ -18,18 +18,7 @@ class TaskService
 
     public function createTask($data)
     {
-        $executed = RateLimiter::attempt(
-            'send-message:'.$data['name'],
-            5,
-            function() use($data) {
-                Task::create($data);
-            },
-            10
-        );
-        if (! $executed) {
-            return 'Too many messages sent!';
-        }
-        return $data;
+        return Task::create($data);
     }
 
     public function updateTask($id, $data)
