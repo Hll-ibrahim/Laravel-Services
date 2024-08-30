@@ -35,4 +35,9 @@ class CategoryController extends Controller
     public function destroy(Request $request){
         return $this->categoryService->destroy($request['id']);
     }
+
+    public function tasks(int $category_id){
+
+        return $this->categoryService->getTasks($category_id);
+    }
 }

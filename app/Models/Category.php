@@ -11,4 +11,7 @@ class Category extends Model
 
     protected $fillable = ['name','parent_id'];
 
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
 }

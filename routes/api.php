@@ -36,5 +36,7 @@ Route::middleware(RateLimiter::class)->middleware('auth:api')->controller(Catego
     Route::post('categories', 'store');
     Route::put('categories', 'update');
     Route::delete('categories', 'destroy');
+
+    Route::get('categories/tasks/{id}','tasks');
 });
 

@@ -28,4 +28,9 @@ class CategoryService
         $category->delete();
         return $category;
     }
+
+    public function getTasks(int $id){
+        $category = Category::with('tasks')->findOrFail($id);
+        return $category->tasks;
+    }
 }
