@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\CategoryService;
 use Illuminate\Support\ServiceProvider;
 use App\Services\TaskService;
 
@@ -15,6 +16,9 @@ class TaskServiceProvider extends ServiceProvider
     {
         $this->app->singleton(TaskService::class, function ($app) {
             return new TaskService();
+        });
+        $this->app->singleton(CategoryService::class, function ($app) {
+            return new CategoryService();
         });
     }
 

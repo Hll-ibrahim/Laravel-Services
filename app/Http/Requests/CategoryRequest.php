@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class TaskRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,25 +24,17 @@ class TaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'required|min:5|string|max:30',
-            'description'=>'required|min:5|max:200',
-            'category_id'=>'required|exists:categories,id',
+            'name' => 'required|min:3',
+            'parent_id' => 'nullable|exists:categories,id',
+            'id'=>'nullable'
         ];
     }
 
-    public function messages()
-    {
+    public function messages(): array{
         return [
-            'name.required' => 'Başlık alanı gereklidir.',
-            'description.required' => 'İçerik alanı gereklidir.',
-            'category_id.required' => 'Kategori alanı gereklidir.',
-            'category_id.exists' => 'Kategori bulunamadı.',
-
-            'name.min' => 'Başlık alanı en az 5 karakterden oluşmalıdır.',
-            'description.min' => 'İçerik alanı en az 5 karakterden oluşmalıdır.',
-
-            'name.max' => 'Başlık alanı en fazla 30 karakterden oluşmalıdır.',
-            'description.max' => 'İçerik alanı en fazla 200 karakterden oluşmalıdır.',
+            'name.required' => 'Kategori alanı gereklidir.',
+            'name.min' => 'Kategori alanı en az 3 karakterli olmalıdır.',
+            'paren_id.exist' => 'Üst kategori bulunamadı!'
         ];
     }
 
