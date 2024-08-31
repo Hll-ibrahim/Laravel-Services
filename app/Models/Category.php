@@ -14,4 +14,12 @@ class Category extends Model
     public function tasks(){
         return $this->hasMany(Task::class);
     }
+
+    public function parent(){
+        return $this->belongsTo(Category::class);
+    }
+
+    public function children(){
+        return $this->hasMany(Category::class,'parent_id');
+    }
 }

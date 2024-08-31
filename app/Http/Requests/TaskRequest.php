@@ -27,6 +27,8 @@ class TaskRequest extends FormRequest
             'name'=>'required|min:5|string|max:30',
             'description'=>'required|min:5|max:200',
             'category_id'=>'required|exists:categories,id',
+            'priority_id'=>'required|exists:priorities,id',
+            'status_id'=>'required|exists:statuses,id',
         ];
     }
 
@@ -37,6 +39,10 @@ class TaskRequest extends FormRequest
             'description.required' => 'İçerik alanı gereklidir.',
             'category_id.required' => 'Kategori alanı gereklidir.',
             'category_id.exists' => 'Kategori bulunamadı.',
+            'priority_id.required' => 'Öncelik alanı gereklidir.',
+            'priority_id.exists' => 'Öncelik alanı bulunamadı.',
+            'status_id.exists' => 'Durum alanı gereklidir.',
+            'status_id.required' => 'Durum alanı bulunamadı.',
 
             'name.min' => 'Başlık alanı en az 5 karakterden oluşmalıdır.',
             'description.min' => 'İçerik alanı en az 5 karakterden oluşmalıdır.',

@@ -2,13 +2,20 @@
 namespace App\Services;
 
 use App\Models\Task;
+use App\Repositories\TaskRepositoryInterface;
+use App\Repositories\TaskRepository;
 use Illuminate\Support\Facades\RateLimiter;
 
 class TaskService
 {
+    protected TaskRepository $taskRepository;
+
+    public function __construct(TaskRepositoryInterface $taskRepository){
+        $this->taskRepository = $taskRepository;
+    }
     public function getAllTasks()
     {
-        return Task::all();
+        return $this->taskRepository->getTasks();
     }
 
     public function getTaskById($id)
