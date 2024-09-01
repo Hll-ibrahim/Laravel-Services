@@ -7,7 +7,7 @@ use App\Repositories\TaskRepository;
 
 class TaskService
 {
-    protected TaskRepository $taskRepository;
+    protected $taskRepository;
 
     public function __construct(TaskRepositoryInterface $taskRepository){
         $this->taskRepository = $taskRepository;
