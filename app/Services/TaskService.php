@@ -2,9 +2,8 @@
 namespace App\Services;
 
 use App\Models\Task;
-use App\Repositories\TaskRepositoryInterface;
+use App\Repositories\Interfaces\TaskRepositoryInterface;
 use App\Repositories\TaskRepository;
-use Illuminate\Support\Facades\RateLimiter;
 
 class TaskService
 {
